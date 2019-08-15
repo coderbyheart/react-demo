@@ -1,0 +1,9 @@
+*{
+    padding:0px;
+    margin:0px;
+}
+
+.header{
+    background-image: linear-gradient(to right, rgba(49,54,151,1), rgb(27, 180, 157));
+}
+
