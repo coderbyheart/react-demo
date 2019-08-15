@@ -13,35 +13,34 @@ const PRODUCTS_PER_PAGE = 4
         const areMoreProducts = products.length < productsConnection.aggregate.count
         return (
           <section>
-          <ul className='Product-list row'>
             {products.map(product => (
-              <li className='Product-card four columns' key={`product-${product.id}`}>
-                <div className='Product-image'>
-                  { product.image.length > 0 ? (
-                  <img
-                    alt={product.name}
-                    src={graphCmsImageUrl(product.image[0].handle, {height:300, width: 300, fit: 'crop'})}
-                  /> ) : ( <img /> ) }
-                </div>
-                <div className="Product-details">
-                <Link to={`/product/${product.slug}`} className='Product-link'>
+               <Card key={`product-${product.id}`}  className='card'>
+               <div className='product-image'>
+               { product.image.length > 0 ? (
+               <a href='#'>
+               <Image
+               style={{padding:'5px'}}
+                 alt={product.name}
+                 src={graphCmsImageUrl(product.image[0].handle, {height:300, width: 300, fit: 'crop'})}
+               /></a> ) : (<a href='#'> <Image src='https://media.springernature.com/lw410/springer-cms/rest/v1/img/10046734/v2/4by3?as=jpg' style={{padding:'5px'}}/></a> ) }
+               </div>
+                 <Link to={`/product/${product.slug}`} className='Product-link'>
                   <h3>{product.name}</h3>
                 </Link>
-                  <div className='Product-description'>
-                    {product.tagLine}
-                  </div>
-                  {/* <div className='Product-tags'>
-                    {product.tags.map(tag => {
-                      return <Link className='tag' key={tag.id} to={`/tag/${tag.slug}`} >
-                        {tag.name}
-                      </Link>
-                    })}
-                  </div> */}
-                  <div className='Product-company u-pull-right'>{product.company ? product.company.name : ''}</div>
-                </div>
-              </li>
+ 
+               {/* <div className='Product-tags'>
+                 {product.tags.map(tag => {
+                   return <a href='#'><Label  key={tag.slug} to={`/tag/${tag.slug}`} style={{margin:'5px'}} >
+                     {tag.name}
+                   </Label></a>
+                 })}
+               </div> */}
+               <Card.Description style={{margin:'8px'}}>
+               <strong>Product Detail:</strong><br/><span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren</span> 
+               </Card.Description>
+                <div className='Product-company u-pull-right' style={{margin:'8px'}}><strong>{product.company ? product.company.name : ''}</strong></div> 
+           </Card>
             ))}
-          </ul>
           <div className='Home-showMoreWrapper'>
             {areMoreProducts
               ? <button className='Home-button' disabled={loading} onClick={() => loadMoreProducts()}>
