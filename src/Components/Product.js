@@ -5,6 +5,7 @@ import {graphCmsImageUrl} from '../lib'
 
 const Product = ({data:{loading,error,product}}) =>{
   if(error) return <div>Error</div>
+  if (loading) return <div>Loading ...</div>
   if(!loading) return (
     <article>
         <h1>{product.name}</h1>
